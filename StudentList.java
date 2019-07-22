@@ -4,7 +4,7 @@ import java.util.*;
 public class StudentList {
 	public static void main(String[] args) {
 
-//		Check arguments
+
 		Constant constant = new Constant();
 		String fileContent = loadData(constant.studentList);
 		if(args==null || args.length != 1)
@@ -14,7 +14,6 @@ public class StudentList {
 		else if(args[0].equals(constant.showAll)) {
 			System.out.println("Loading data ...");			
 			try {
-				
 				String words[] = fileContent.split(constant.Spliter);			
 				for(String word : words)
 			 	{ 
@@ -27,7 +26,6 @@ public class StudentList {
 		{
 			System.out.println("Loading data ...");			
 			try {
-				
 				System.out.println(fileContent);
 				String words[] = fileContent.split(constant.Spliter);	
 				Random random = new Random();
@@ -42,8 +40,7 @@ public class StudentList {
 				BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("students.txt", true));
 				String argValue = args[0].substring(1);
 	       	 	Date date = new Date();
-	       		String data_Format = "dd/mm/yyyy-hh:mm:ss a";
-	        	DateFormat dateFormat = new SimpleDateFormat(data_Format);
+	        	DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy-hh:mm:ss a");
 	        	String formatted_data = dateFormat.format(date);
 				bufferedWriter.write(", "+argValue+"\nList last updated on "+formatted_data);
 				bufferedWriter.close();
@@ -55,7 +52,6 @@ public class StudentList {
 		{
 			System.out.println("Loading data ...");			
 			try {
-				
 				String words[] = fileContent.split(constant.Spliter);	
 				boolean done = false;
 				String argValue = args[0].substring(1);
@@ -72,7 +68,6 @@ public class StudentList {
 		{
 			System.out.println("Loading data ...");			
 			try {
-				
 				char words[] = fileContent.toCharArray();			
 				boolean in_word = false;
 				int count=0;
