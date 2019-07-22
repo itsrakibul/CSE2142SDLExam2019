@@ -4,7 +4,7 @@ import java.util.*;
 public class StudentList {
 	public static void main(String[] args) {
 
-
+//		Check arguments
 		Constant constant = new Constant();
 		String fileContent = loadData(constant.studentList);
 		if(args==null || args.length != 1)
@@ -40,6 +40,7 @@ public class StudentList {
 				BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("students.txt", true));
 				String argValue = args[0].substring(1);
 	       	 	Date date = new Date();
+
 	        	DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy-hh:mm:ss a");
 	        	String formatted_data = dateFormat.format(date);
 				bufferedWriter.write(", "+argValue+"\nList last updated on "+formatted_data);
@@ -52,14 +53,25 @@ public class StudentList {
 		{
 			System.out.println("Loading data ...");			
 			try {
+				
 				String words[] = fileContent.split(constant.Spliter);	
-				boolean done = false;
+				//boolean done = false;
 				String argValue = args[0].substring(1);
-				for(int idx = 0; idx<words.length && !done; idx++) {
+				int index=-1;
+				for(int idx = 0; idx<words.length; idx++) {
 					if(words[idx].equals(argValue)) {
-						System.out.println("We found it!");
-							done=true;
+						
+							index=idx;
+							break;
 					}
+				}
+				if(index>=0)
+				{
+					System.out.println("Data Found");
+				}
+				else
+				{
+					System.out.println("Data not Found");
 				}
 			} catch (Exception e){} 
 			System.out.println("Data Loaded.");				
@@ -68,6 +80,7 @@ public class StudentList {
 		{
 			System.out.println("Loading data ...");			
 			try {
+				
 				char words[] = fileContent.toCharArray();			
 				boolean in_word = false;
 				int count=0;
