@@ -6,6 +6,11 @@ public class StudentList {
 
 //		Check arguments
 		if(args[0].equals("a")) {
+		if(args==null || args.length != 1)
+		{
+			return ;
+		}
+		else if(args[0].equals("a")) {
 			System.out.println("Loading data ...");			
 			try {
 				BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
@@ -16,9 +21,9 @@ public class StudentList {
 			 		System.out.println(j); 
 			 	}
 			} catch (Exception e){} 
-			System.out.println("Data Loaded.");
+			System.out.println("Data Loaded."); 
 		}
-		else if(args[0].equals("r")) 
+		else if(args[0].equals("r"))
 		{
 			System.out.println("Loading data ...");			
 			try {
@@ -44,7 +49,7 @@ public class StudentList {
 				s.write(", "+t+"\nList last updated on "+fd);
 				s.close();
 			} catch (Exception e){}
-
+							
 			System.out.println("Data Loaded.");	
 		}
 		else if(args[0].contains("?")) 
