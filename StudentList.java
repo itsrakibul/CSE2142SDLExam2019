@@ -4,19 +4,18 @@ import java.util.*;
 public class StudentList {
 	public static void main(String[] args) {
 
-
-		String fileContent = loadData("students.txt");
+//		Check arguments
+		Constant constant = new Constant();
+		String fileContent = loadData(constant.studentList);
 		if(args==null || args.length != 1)
 		{
 			return ;
 		}
-		else if(args[0].equals("a")) {
+		else if(args[0].equals(constant.showAll)) {
 			System.out.println("Loading data ...");			
 			try {
-				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
-				String fileContent = bufferedReader.readLine();
 				
-				String words[] = fileContent.split(",");			
+				String words[] = fileContent.split(constant.Spliter);			
 				for(String word : words)
 			 	{ 
 			 		System.out.println(word); 
@@ -24,22 +23,20 @@ public class StudentList {
 			} catch (Exception e){} 
 			System.out.println("Data Loaded.");
 		}
-		else if(args[0].equals("r")) 
+		else if(args[0].equals(constant.showRandom)) 
 		{
 			System.out.println("Loading data ...");			
 			try {
-				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
-				String fileContent = bufferedReader.readLine();
 				
 				System.out.println(fileContent);
-				String words[] = fileContent.split(",");	
+				String words[] = fileContent.split(constant.Spliter);	
 				Random random = new Random();
 				int randomIndex = random.nextInt();
 				System.out.println(words[randomIndex]);
 			} catch (Exception e){} 
 			System.out.println("Data Loaded.");			
 		}
-		else if(args[0].contains("+")){
+		else if(args[0].contains(constant.addEntry)){
 			System.out.println("Loading data ...");			
 			try {
 				BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("students.txt", true));
@@ -54,14 +51,12 @@ public class StudentList {
 							
 			System.out.println("Data Loaded.");	
 		}
-		else if(args[0].contains("?")) 
+		else if(args[0].contains(constant.findEntry)) 
 		{
 			System.out.println("Loading data ...");			
 			try {
-				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
-				String fileContent = bufferedReader.readLine();
 				
-				String words[] = fileContent.split(",");	
+				String words[] = fileContent.split(constant.Spliter);	
 				boolean done = false;
 				String argValue = args[0].substring(1);
 				for(int idx = 0; idx<words.length && !done; idx++) {
@@ -73,12 +68,10 @@ public class StudentList {
 			} catch (Exception e){} 
 			System.out.println("Data Loaded.");				
 		}
-		else if(args[0].contains("c")) 
+		else if(args[0].contains(constant.showCount)) 
 		{
 			System.out.println("Loading data ...");			
 			try {
-				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
-				String fileContent = bufferedReader.readLine();
 				
 				char words[] = fileContent.toCharArray();			
 				boolean in_word = false;
@@ -101,7 +94,7 @@ public class StudentList {
 		try
 		{
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
-
+			
 			return bufferedReader.readLine();
 		}catch(Exception e)
 		{
